@@ -1,3 +1,6 @@
 node_modules/
+módulos_nodo/
+.env
+.ambiente
 Archivos de clase/
 BD/
