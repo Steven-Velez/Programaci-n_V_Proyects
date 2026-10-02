@@ -91,3 +91,8 @@ async function ensureUniqueFields(userId, materia, excludeId) {
         }
     }
 }
+
+export async function listEventosByMateria(id, userId) {
+    // Llama a la función de la capa de datos (repositorio)
+    return materiasRepository.findEventosByMateriaAndUserId(id, userId);
+}

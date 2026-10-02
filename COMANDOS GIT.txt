@@ -1,0 +1,87 @@
+git init -------> iniciar git
+git branch -M main -----------> cambiar master por main
+git config --global user.name "tu nombre" ---------> configurar usuario
+git config --global user.email "nombredeusuario@gmail.com" ---------> configurar correo
+clear --------------> limpiar consola
+git status --------------> mirar el estado de los archivos y commits
+git add . -----------------> agregar todo al área de preparación
+git commit -m "comentario"---------------> se guarda un commit
+git push origin main ------- -----------> subir los commits a GitHub
+git remote add origin <URL-de-tu-repositorio> ---------> conecta tu repositorio local con el repositorio remoto en GitHub
+
+-------------------------------------------------------------------------
+git log --graph --decorate --all --oneline -----------> lista de serial commits resumida
+git config --global alias.nombredealias "log --graph --decorate --all --oneline" ------------> método de resumir comandosg
+-------------------------------------------------------------------------
+
+git checkout d06b776  ejemplo--> e069cb6 ---------> vuelve a una modificación anterior
+touch .gitignore -------------> crea el archivo para ignorar librerías y carpetas pesadas (node_modules, etc.)
+
+git tag -a v1.0 -m "mensaje" ------------> método de colocar versión a cada una de las actualizaciones del proyecto (Tag anotado)
+git tag -------------> ver la lista de tags creados localmente
+git push origin v1.0 --------------------> subir un tag específico a GitHub
+git push origin --tags --------------------> subir todos los tags creados a GitHub de una sola vez
+
+git tag -d nombre-del-tag --------------------> borrar un tag localmente
+git push origin --delete nombre-del-tag --------------------> borrar un tag en GitHub (remoto)
+
+git commit --amend -m "nuevo mensaje" -----------------> corregir el mensaje del último commit hecho
+git reset --soft HEAD~1 -----------------> deshacer el último commit manteniendo los archivos intactos
+
+------------------------------------------------------------------------------------------------------------------------
+Formato de Semantic Versioning
+v1.2.3
+│ │ │
+│ │ └─ PATCH: Correcciones de bugs (cambios compatibles)
+│ └─── MINOR: Nueva funcionalidad (cambios compatibles)
+└───── MAJOR: CHANGES incompatibles con versiones anteriores
+--------------------------------------------------------------------------------------------------------------------
+
+git switch main -------------------> hace que vuelva el head o la versión escogida a la versión main ´´actual´´
+
+---------------------------------------------------------------------------------------
+git branch ejemplo -->estilos -------------> se utiliza para generar un colaborativo NOTA: Siempre hay que crear la rama y se comparte el archivo al otro usuario
+git switch estilos -------------------->se usa desde otro usuario para colaborar con el proyecto
+--------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------------
+git merge main -----------------> ventana para registrar los comentarios de la operación que esta saliendo
+:q --------------->salir del merge
+-------------------------------------------------------------------------------------------------------
+$ ls -al ~/.ssh -----------> comando para iniciar en el proceso de GitHub recordar crear si no esta la carpeta .ssh en disco c:
+
+$ ssh-keygen -t ed25519 -C "guachetavelez@gmail.com" ------------------> para iniciar en la key de GitHub
+
+Enter file in which to save the key (/c/Users/steve/.ssh/id_ed25519): id_rsa ---------->metdo para poner un servidor publico
+ doble enter sin poner clave
+
+-------------------------------------------------------------------------------------
+$ eval "$(ssh-agent -s)"~ -------------------->aloja a la carpeta y crea un agent y debe aparecer lo siguiente:
+----------------------------------------------------------------------------------
+Agent pid 906
+bash: /c/Users/steve: Is a directory
+-----------------------------------------------------------------------------------------
+$ ssh-add /c/Users/steve/.ssh/id_rda ------------------------------->se pone ssh-add + ruta c añadiendo el /id_rda
+
+se crea una key en setting de GitHub
+
+y se pega el key generado en id_rda.pub abriendo con block de notas
+
+después se pega esto en consola $ git remote add origin git@github.com:Steven-Velez/Proyecto-Web.git
+
+como ultimo $ git push -u origin main
+The authenticity of host 'github.com (140.82.112.3)' can't be established.
+ED25519 key fingerprint is: SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes ---------> se da yes rápidamente y listo
+
+git clone https://github.com/Steven-Velez/directorio-mvc-java.git -------------> clonar un repositorio existente
+
+------------------------------------------------------------------------------------------------------------------------
+COMANDOS ADICIONALES RECOMENDADOS A FUTURO (Para tu semestre y proyectos):
+------------------------------------------------------------------------------------------------------------------------
+git pull origin main -------------> Descargar y fusionar los cambios de GitHub a tu computador (muy útil si trabajas desde varios PCs o en equipo)
+git remote -v --------------------> Verificar cuál es la URL del repositorio remoto vinculado a tu proyecto
+git diff -------------------------> Ver exactamente qué líneas de código cambiaste antes de hacer un add o commit
+git branch -d nombre-rama --------> Borrar una rama local que ya no uses o que ya terminaste de fusionar
+git stash -------------------------> Guardar temporalmente los cambios en los que estás trabajando sin hacer commit para limpiar la pantalla
