@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentFlow · Recordatorios</title>
+    <link rel="stylesheet" href="./css/recordatorios.css">
+    <script type="module" src="./js/pages/recordatorios.js"></script>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">StudentFlow / Gestión académica</p>
+        <h1>Mis recordatorios</h1>
+        <p>Administra los recordatorios asociados a tus tareas y materias.</p>
+        <nav class="toolbar" aria-label="Operaciones de recordatorios">
+          <button type="button" data-operation="list">Listar</button>
+          <button type="button" data-operation="get" class="secondary">Consultar uno</button>
+          <button type="button" data-operation="create" class="secondary">Crear</button>
+          <button type="button" data-operation="replace" class="secondary">Reemplazar</button>
+          <button type="button" data-operation="patch" class="secondary">Actualizar campos</button>
+          <button type="button" data-operation="delete" class="secondary danger">Eliminar</button>
+          <a class="button secondary" href="./index.html">API de materias</a>
+        </nav>
+      </header>
+
+      <section class="panel filters" aria-labelledby="filters-title">
+        <h2 id="filters-title">Mis recordatorios</h2>
+        <form id="filters-form">
+          <label>
+            Buscar
+            <input id="search" type="search" placeholder="Mensaje, tarea o materia">
+          </label>
+          <label>
+            Estado de lectura
+            <select id="filter-read">
+              <option value="">Todos</option>
+              <option value="false">No leídos</option>
+              <option value="true">Leídos</option>
+            </select>
+          </label>
+          <label>
+            Elementos por página
+            <select id="page-limit">
+              <option>10</option>
+              <option selected>20</option>
+              <option>50</option>
+              <option>100</option>
+            </select>
+          </label>
+          <button type="submit">Actualizar listado</button>
+        </form>
+        <p id="status" role="status" aria-live="polite">Cargando recordatorios...</p>
+        <p id="pagination" class="muted"></p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th><th>Tarea</th><th>Materia</th><th>Mensaje</th>
+                <th>Fecha y hora</th><th>Canal</th><th>Estado</th><th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="recordatorios"></tbody>
+          </table>
+        </div>
+        <div class="actions">
+          <button id="previous-page" type="button" class="secondary">Anterior</button>
+          <button id="next-page" type="button" class="secondary">Siguiente</button>
+        </div>
+      </section>
+
+      <section class="panel editor" aria-labelledby="editor-title">
+        <h2 id="editor-title">Crear recordatorio</h2>
+        <p id="operation-help" class="muted">Selecciona una operación para comenzar. Las consultas y cambios siempre se limitan a tus datos.</p>
+        <form id="recordatorio-form">
+          <div id="id-field" hidden>
+            <label for="recordatorio-id">ID del recordatorio</label>
+            <input id="recordatorio-id" type="number" min="1" step="1" placeholder="ID">
+          </div>
+          <label for="task-id">Tarea asociada</label>
+          <select id="task-id"></select>
+          <label for="message">Mensaje</label>
+          <input id="message" maxlength="255">
+          <label for="date-time">Fecha y hora</label>
+          <input id="date-time" type="datetime-local">
+          <label for="channel">Canal</label>
+          <select id="channel">
+            <option value="in_app">En la aplicación</option>
+            <option value="email">Correo electrónico</option>
+          </select>
+          <label class="checkbox-label" for="read"><input id="read" type="checkbox"> Leído</label>
+          <div id="patch-fields" class="patch-fields" hidden>
+            <span>Campos a actualizar:</span>
+            <label><input type="checkbox" data-field="tareaId" checked> Tarea</label>
+            <label><input type="checkbox" data-field="mensaje" checked> Mensaje</label>
+            <label><input type="checkbox" data-field="fechaHora" checked> Fecha y hora</label>
+            <label><input type="checkbox" data-field="canal" checked> Canal</label>
+            <label><input type="checkbox" data-field="leido" checked> Estado leído</label>
+          </div>
+          <div class="actions">
+            <button id="submit-operation" type="submit">Crear recordatorio</button>
+            <button id="clear-form" type="button" class="secondary">Limpiar</button>
+          </div>
+        </form>
+        <pre id="result" aria-label="Resultado de la operación">Las respuestas de la API aparecerán aquí.</pre>
+      </section>
+      <footer>La API consulta tareas y materias para validar su propietario; únicamente modifica filas de la tabla de recordatorios.</footer>
+    </main>
+  </body>
+</html>
