@@ -280,4 +280,4 @@ document.querySelector("#recordatorio-form").addEventListener("submit", async ev
 document.querySelector("#clear-form").addEventListener("click", () => clearForm());
 
 await loadTasks();
-await loadList();
+setOperation("list");
